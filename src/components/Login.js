@@ -1,30 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useContext } from 'react'
 import { Contextlogin } from '../contextjs/Contextlogin'
 
 
 function Login() {
-    const {setName,setProfileInfo}=useContext(Contextlogin)
+    const {name,setName,pwd,setPwd,setProfileInfo}=useContext(Contextlogin)
    // const [name,setName]=useState("")
    // const [pwd,setPwd]=useState("")
    // const [profileinfo,setProfileInfo]=useState(false)
-   // const show=()=>{
-       // if (name==="Sharmila" && pwd==="admin@123")
-      //      setProfileInfo(true)
-      //  else
-       //     setProfileInfo(false)
-  //  }
+   const[error,setError]=useState("")
+    const show=()=>{
+        if (name==="Sharmila" && pwd==="123")
+        {
+            setProfileInfo(true)
+          setError("")
+        }
+        else
+           setError("Invalid User!!!")
+   }
   return (
     <div>
     <input type="text" onChange={(e)=>setName(e.target.value)} placeholder='enter your name'></input>
     <br></br>
-    <input type="password" placeholder='enter your password'></input>
+    <input type="password" onChange={(e)=>setPwd(e.target.value)} placeholder='enter your password'></input>
     <br></br>
-    <input type="button"  value="Login" onClick={()=>setProfileInfo(true)}></input>
+    <input type="button" onClickCapture={()=>show()} value="Login" ></input>
     <br></br>
-    {/*{(profileinfo && "Valid user :"+name+"!") ||"Invalid user!!!"}*/}
+    {error && <p style={{color:'red'}}>{error}</p>}
+    {/* {profileinfo ===false && <font color='red'>Invalid user!!!</font>} */}
 
-      
+     
     </div>
   )
 }

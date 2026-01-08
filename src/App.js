@@ -7,10 +7,13 @@ import Login from './components/Login'
 
 function App() {
   const[name,setName]=useState("")
-  const [profileinfo,setProfileInfo]=useState(false)
+  const[pwd,setPwd]=useState("")
+  const[profileinfo,setProfileInfo]=useState(false)
+
+
   return (
     <div>
-     <Contextlogin.Provider value={{name,setName,setProfileInfo}}>
+     <Contextlogin.Provider value={{name,setName,pwd,setPwd,setProfileInfo}}>
       {profileinfo ? <Profile/>:<Login/>}
      </Contextlogin.Provider>
      
